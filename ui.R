@@ -3,7 +3,7 @@ library(shiny)
 shinyUI(fluidPage(
   
   # Application title
-  titlePanel("GRNN"),
+  titlePanel("Probabilistic neural network"),
   
   # Sidebar with a slider input for number of bins 
   sidebarLayout(
