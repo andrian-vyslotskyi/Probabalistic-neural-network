@@ -29,10 +29,11 @@ train_ind <- sample(seq_len(nrow(input)), size = smp_size)
 train <- input[train_ind, ]
 test <- input[-train_ind, ]
 
-x <- c(5.0,3.6,1.4,0.2)
+result <- apply(test, 1, function(x) pnn(train, as.numeric(x[1:4]), sigma) )
+classes <- apply(result, 2, function(probs) names(which.max(probs)) )
+probs <- apply(result, 2, function(probs) max(probs) )
 
-p <- pnn(train, x, sigma)
-
-print(p)
-names(which.max(p))
-max(p)
+colnames(test) <- c("v1","v2","v3","v4","Class")
+test["NN class"] <- classes
+test["NN probabilities"] <- probs
+test
